@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  atm_id: 1
+  type_id: 1
+  reported_at: 2013-02-10
+  status: false
+
+two:
+  atm_id: 1
+  type_id: 1
+  reported_at: 2013-02-10
+  status: false

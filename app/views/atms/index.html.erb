@@ -1,0 +1,37 @@
+<h1>Listing atms</h1>
+
+<table>
+  <tr>
+    <th>Branch</th>
+    <th>Municipality</th>
+    <th>Street</th>
+    <th>District</th>
+    <th>Zipcode</th>
+    <th>Latitude</th>
+    <th>Longitude</th>
+    <th>Bank</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @atms.each do |atm| %>
+  <tr>
+    <td><%= atm.branch %></td>
+    <td><%= atm.municipality_id %></td>
+    <td><%= atm.street %></td>
+    <td><%= atm.district %></td>
+    <td><%= atm.zipcode %></td>
+    <td><%= atm.latitude %></td>
+    <td><%= atm.longitude %></td>
+    <td><%= atm.bank_id %></td>
+    <td><%= link_to 'Show', atm %></td>
+    <td><%= link_to 'Edit', edit_atm_path(atm) %></td>
+    <td><%= link_to 'Destroy', atm, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Atm', new_atm_path %>

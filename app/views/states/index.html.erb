@@ -1,0 +1,33 @@
+<h1>Listing states</h1>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Code</th>
+    <th>Latitude</th>
+    <th>Longitude</th>
+    <th>Zoom</th>
+    <th>Space</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @states.each do |state| %>
+  <tr>
+    <td><%= state.name %></td>
+    <td><%= state.code %></td>
+    <td><%= state.latitude %></td>
+    <td><%= state.longitude %></td>
+    <td><%= state.zoom %></td>
+    <td><%= state.space %></td>
+    <td><%= link_to 'Show', state %></td>
+    <td><%= link_to 'Edit', edit_state_path(state) %></td>
+    <td><%= link_to 'Destroy', state, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New State', new_state_path %>
