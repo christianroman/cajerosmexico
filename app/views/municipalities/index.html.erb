@@ -1,6 +1,6 @@
 <h1>Listing municipalities</h1>
 
-<table>
+<table class="table table-bordered">
   <tr>
     <th>Name</th>
     <th>State</th>
@@ -8,22 +8,20 @@
     <th>Longitude</th>
     <th></th>
     <th></th>
-    <th></th>
   </tr>
 
 <% @municipalities.each do |municipality| %>
   <tr>
-    <td><%= municipality.name %></td>
-    <td><%= municipality.state_id %></td>
+    <td><%= link_to municipality.name, municipality_path(municipality) %></td>
+    <td><%= municipality.state.name %></td>
     <td><%= municipality.latitude %></td>
     <td><%= municipality.longitude %></td>
-    <td><%= link_to 'Show', municipality %></td>
-    <td><%= link_to 'Edit', edit_municipality_path(municipality) %></td>
-    <td><%= link_to 'Destroy', municipality, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    <td><%= link_to 'Edit', edit_municipality_path(municipality), :class => "btn btn-small" %></td>
+    <td><%= link_to 'Destroy', municipality, method: :delete, data: { confirm: 'Are you sure?' }, :class => "btn btn-small btn-danger" %></td>
   </tr>
 <% end %>
 </table>
 
 <br />
 
-<%= link_to 'New Municipality', new_municipality_path %>
+<%= link_to 'New Municipality', new_municipality_path, :class => "btn btn-primary" %>

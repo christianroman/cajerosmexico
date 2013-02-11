@@ -1,6 +1,6 @@
 <h1>Listing atms</h1>
 
-<table>
+<table class="table">
   <tr>
     <th>Branch</th>
     <th>Municipality</th>
@@ -12,26 +12,24 @@
     <th>Bank</th>
     <th></th>
     <th></th>
-    <th></th>
   </tr>
 
 <% @atms.each do |atm| %>
   <tr>
-    <td><%= atm.branch %></td>
-    <td><%= atm.municipality_id %></td>
+    <td><%= link_to atm.branch, atm_path(atm) %></td>
+    <td><%= atm.municipality.name %></td>
     <td><%= atm.street %></td>
     <td><%= atm.district %></td>
     <td><%= atm.zipcode %></td>
     <td><%= atm.latitude %></td>
     <td><%= atm.longitude %></td>
-    <td><%= atm.bank_id %></td>
-    <td><%= link_to 'Show', atm %></td>
-    <td><%= link_to 'Edit', edit_atm_path(atm) %></td>
-    <td><%= link_to 'Destroy', atm, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    <td><%= atm.bank.name %></td>
+    <td><%= link_to 'Edit', edit_atm_path(atm), :class => "btn btn-small" %></td>
+    <td><%= link_to 'Destroy', atm, method: :delete, data: { confirm: 'Are you sure?' }, :class => "btn btn-small btn-danger" %></td>
   </tr>
 <% end %>
 </table>
 
-<br />
+<%= paginate @atms %>
 
-<%= link_to 'New Atm', new_atm_path %>
+<%= link_to 'New Atm', new_atm_path, :class => "btn btn-primary" %>

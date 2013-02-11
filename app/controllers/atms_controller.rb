@@ -2,7 +2,8 @@ class AtmsController < ApplicationController
   # GET /atms
   # GET /atms.json
   def index
-    @atms = Atm.all
+    #@atms = Atm.limit(100)
+    @atms = Atm.order('id DESC').page(params[:page]).per(20)
 
     respond_to do |format|
       format.html # index.html.erb
