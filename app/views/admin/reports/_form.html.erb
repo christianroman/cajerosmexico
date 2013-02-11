@@ -1,0 +1,33 @@
+<%= form_for [:admin, @report] do |f| %>
+  <% if @report.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@report.errors.count, "error") %> prohibited this report from being saved:</h2>
+
+      <ul>
+      <% @report.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :atm_id %>
+    <%= f.number_field :atm_id %>
+  </div>
+  <div class="field">
+    <%= f.label :type_id %>
+    <%= f.number_field :type_id %>
+  </div>
+  <div class="field">
+    <%= f.label :reported_at %>
+    <%= f.date_select :reported_at %>
+  </div>
+  <div class="field">
+    <%= f.label :status %>
+    <%= f.check_box :status %>
+  </div>
+  <div class="actions"><br/>
+      <%= f.submit :class => 'btn btn-primary' %>
+  </div>
+<% end %>

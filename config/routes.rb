@@ -1,24 +1,22 @@
 Cajerosmexico::Application.routes.draw do
 
-  controller :sessions do
-      get  'login' => :new
-      post 'login' => :create
-      delete 'logout' => :destroy
+  namespace :admin do
+
+      root :to => 'atms#index'
+
+      controller :sessions do
+	  get  'login' => :new
+	  post 'login' => :create
+	  delete 'logout' => :destroy
+      end
+
+      resources :users
+      resources :states
+      resources :municipalities
+      resources :banks
+      resources :atms
+      resources :reports
   end
-
-  resources :users
-
-  resources :states
-
-  resources :municipalities
-
-  resources :banks
-
-  resources :atms
-
-  resources :reports
-
-  resources :municipalities, :only => :show
 
   namespace :api, defaults: {format: 'json'} do
       namespace :v1 do
