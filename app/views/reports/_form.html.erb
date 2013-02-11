@@ -12,22 +12,22 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :atm_id %><br />
+    <%= f.label :atm_id %>
     <%= f.number_field :atm_id %>
   </div>
   <div class="field">
-    <%= f.label :type_id %><br />
+    <%= f.label :type_id %>
     <%= f.number_field :type_id %>
   </div>
   <div class="field">
-    <%= f.label :reported_at %><br />
+    <%= f.label :reported_at %>
     <%= f.date_select :reported_at %>
   </div>
   <div class="field">
-    <%= f.label :status %><br />
+    <%= f.label :status %>
     <%= f.check_box :status %>
   </div>
-  <div class="actions">
-    <%= f.submit %>
+  <div class="actions"><br/>
+      <%= f.submit :class => 'btn btn-primary' %>
   </div>
 <% end %>

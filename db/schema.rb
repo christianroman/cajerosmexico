@@ -22,39 +22,13 @@ ActiveRecord::Schema.define(:version => 20130210190535) do
     t.float   "latitude",                       :null => false
     t.float   "longitude",                      :null => false
     t.integer "bank_id",                        :null => false
-    t.integer "geom",            :limit => 0
   end
 
   add_index "atms", ["latitude", "longitude", "bank_id"], :name => "lat_lon_bank", :unique => true
 
-  create_table "atms_copy", :id => false, :force => true do |t|
-    t.integer "id",                             :null => false
-    t.string  "branch",          :limit => 256
-    t.integer "municipality_id",                :null => false
-    t.string  "street",          :limit => 256
-    t.string  "district",        :limit => 256
-    t.string  "zipcode",         :limit => 5
-    t.float   "latitude",                       :null => false
-    t.float   "longitude",                      :null => false
-    t.integer "bank_id",                        :null => false
-  end
-
   create_table "banks", :force => true do |t|
     t.string "name", :limit => 64, :null => false
   end
-
-  create_table "layer", :id => false, :force => true do |t|
-    t.integer "topology_id",                                  :null => false
-    t.integer "layer_id",                                     :null => false
-    t.string  "schema_name",    :limit => nil,                :null => false
-    t.string  "table_name",     :limit => nil,                :null => false
-    t.string  "feature_column", :limit => nil,                :null => false
-    t.integer "feature_type",                                 :null => false
-    t.integer "level",                         :default => 0, :null => false
-    t.integer "child_id"
-  end
-
-  add_index "layer", ["schema_name", "table_name", "feature_column"], :name => "layer_schema_name_table_name_feature_column_key", :unique => true
 
   create_table "municipalities", :force => true do |t|
     t.string  "name",      :limit => 256, :null => false
@@ -64,19 +38,10 @@ ActiveRecord::Schema.define(:version => 20130210190535) do
   end
 
   create_table "reports", :force => true do |t|
-    t.integer  "atm_id"
-    t.integer  "type"
-    t.datetime "reported_at"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
-  end
-
-  create_table "spatial_ref_sys", :id => false, :force => true do |t|
-    t.integer "srid",                      :null => false
-    t.string  "auth_name", :limit => 256
-    t.integer "auth_srid"
-    t.string  "srtext",    :limit => 2048
-    t.string  "proj4text", :limit => 2048
+    t.integer "atm_id",                     :null => false
+    t.integer "type_id",                    :null => false
+    t.date    "reported_at"
+    t.integer "status",      :default => 0
   end
 
   create_table "states", :force => true do |t|
@@ -88,13 +53,9 @@ ActiveRecord::Schema.define(:version => 20130210190535) do
     t.integer "space"
   end
 
-  create_table "topology", :force => true do |t|
-    t.string  "name",      :limit => nil,                    :null => false
-    t.integer "srid",                                        :null => false
-    t.float   "precision",                                   :null => false
-    t.boolean "hasz",                     :default => false, :null => false
+  create_table "users", :force => true do |t|
+    t.string "username",        :null => false
+    t.string "password_digest"
   end
-
-  add_index "topology", ["name"], :name => "topology_name_key", :unique => true
 
 end

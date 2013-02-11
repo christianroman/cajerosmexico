@@ -2,8 +2,7 @@ class MunicipalitiesController < ApplicationController
   # GET /municipalities
   # GET /municipalities.json
   def index
-    @municipalities = Municipality.all
-
+    @municipalities = Municipality.page(params[:page]).per(20)
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @municipalities }

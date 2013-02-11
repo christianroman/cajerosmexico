@@ -1,18 +1,15 @@
 module Api
     module V1
 	class AtmsController < ApplicationController
-
+	    skip_before_filter :authorize
 	    # POST /atms
 	    # POST /atms.json
 	    def create
 		@atm = Atm.new(params[:atm])
-
 		respond_to do |format|
 		    if @atm.save
-			format.html { redirect_to @atm, notice: 'Atm was successfully created.' }
-			format.json { render json: @atm, status: :created, location: @atm }
+			format.json { render text: "SUCCESS", status: :created }
 		    else
-			format.html { render action: "new" }
 			format.json { render json: @atm.errors, status: :unprocessable_entity }
 		    end
 		end
