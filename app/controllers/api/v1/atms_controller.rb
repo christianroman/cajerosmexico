@@ -9,7 +9,7 @@ module Api
 		@atm = Atm.new(params[:atm])
 		respond_to do |format|
 		    if @atm.save
-			format.json { render text: "SUCCESS", status: :created }
+			format.json { render :json => { :status => "OK" }, status: :created }
 		    else
 			format.json { render json: @atm.errors, status: :unprocessable_entity }
 		    end

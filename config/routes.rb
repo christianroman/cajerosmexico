@@ -28,6 +28,9 @@ Cajerosmexico::Application.routes.draw do
 		  get 'state'
 	      end
 	  end
+
+	  resources :reports
+
       end
   end
 
