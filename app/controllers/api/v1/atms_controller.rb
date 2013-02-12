@@ -2,6 +2,7 @@ module Api
     module V1
 	class AtmsController < ApplicationController
 	    skip_before_filter :authorize
+
 	    # POST /atms
 	    # POST /atms.json
 	    def create

@@ -40,6 +40,10 @@
   <%= @atm.bank_id %>
 </p>
 
+<p>
+  <b>Status:</b>
+  <%= @atm.status %>
+</p>
 
 <%= link_to 'Edit', edit_admin_atm_path(@atm), :class => 'btn' %>
 <%= link_to 'Back', admin_atms_path, :class => 'btn' %>

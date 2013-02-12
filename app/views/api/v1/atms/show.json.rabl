@@ -1,6 +1,6 @@
 object @atm
 
-attributes :id, :branch, :street, :district, :zipcode, :latitude, :longitude
+attributes :id, :branch, :street, :district, :zipcode, :latitude, :longitude, :status
 
 child :municipality do
     extends "api/v1/municipalities/show"

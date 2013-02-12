@@ -1,19 +1,22 @@
 class Atm < ActiveRecord::Base
-  attr_accessible :bank_id, :branch, :district, :latitude, :longitude, :municipality_id, :street, :zipcode
+  attr_accessible :bank_id, :branch, :district, :latitude, :longitude, :municipality_id, :street, :zipcode, :status
   belongs_to :municipality
   belongs_to :bank
 
-  validates :bank_id, :branch, :latitude, :longitude, :municipality_id, :presence => true
+  validates_presence_of :municipality, :message => "no es valido"
+  validates_presence_of :bank, :message => "no es valido"
 
-  validates_uniqueness_of :bank_id, :scope => [:latitude, :longitude]
+  validates :bank_id, :branch, :latitude, :longitude, :municipality_id, :presence => { :message => "no puede estar vacio" }
 
-  validates :branch, :length => { :maximum => 255 }
-  validates :district, :length => { :maximum => 255 }, :allow_blank => true
-  validates :street, :length => { :maximum => 255 }, :allow_blank => true
-  validates :zipcode, :length => { :maximum => 5 }, :allow_blank => true
+  validates_uniqueness_of :bank_id, :scope => [:latitude, :longitude], :message => "este registro ya existe"
 
-  validates :latitude, :numericality => true
-  validates :longitude, :numericality => true
+  validates :branch, :length => { :maximum => 255, :message => "excede numero de caracteres permitidos" }
+  validates :district, :length => { :maximum => 255, :message => "excede numero de caracteres permitidos" }, :allow_blank => true
+  validates :street, :length => { :maximum => 255, :message => "excede numero de caracteres permitidos" }, :allow_blank => true
+  validates :zipcode, :length => { :maximum => 5, :message => "excede numero de caracteres permitidos" }, :allow_blank => true
+
+  validates :latitude, :numericality => { :message => "debe ser numerico" }
+  validates :longitude, :numericality => { :message => "debe ser numerico" }
   
   def self.nearby(latitude, longitude, radius, bank)
       lat = Float(latitude) rescue 0
