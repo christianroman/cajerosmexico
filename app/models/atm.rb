@@ -24,7 +24,7 @@ class Atm < ActiveRecord::Base
       lon = Float(longitude) rescue 0
       rad = Integer(radius) rescue 0
 
-      if bank.nil? || bank.match(/^([1-5][0-5]*,)*[1-5][0-5]*$/).nil?
+      if bank.nil? || bank.match(/^([1-6][0-6]*,)*[1-6][0-6]*$/).nil?
 	  bank = 0
       end
 
@@ -37,7 +37,7 @@ class Atm < ActiveRecord::Base
       lon = Float(longitude) rescue 0
       mun = Integer(municipality) rescue 0
 
-      if bank.nil? || bank.match(/^([1-5][0-5]*,)*[1-5][0-5]*$/).nil?
+      if bank.nil? || bank.match(/^([1-6][0-6]*,)*[1-6][0-6]*$/).nil?
 	  bank = 0
       end
 
@@ -48,7 +48,7 @@ class Atm < ActiveRecord::Base
       zip = zipcode.nil? ? '' : zipcode
       rad = Integer(radius) rescue 0  
 
-      if bank.nil? || bank.match(/^([1-5][0-5]*,)*[1-5][0-5]*$/).nil?
+      if bank.nil? || bank.match(/^([1-6][0-6]*,)*[1-6][0-6]*$/).nil?
 	  bank = 0
       end
 
