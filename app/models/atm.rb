@@ -1,5 +1,6 @@
 class Atm < ActiveRecord::Base
   attr_accessible :bank_id, :branch, :district, :latitude, :longitude, :municipality_id, :street, :zipcode, :status
+  has_many :reports
   belongs_to :municipality
   belongs_to :bank
 
@@ -30,8 +31,17 @@ class Atm < ActiveRecord::Base
       find_by_sql("SELECT * FROM nearbyatms(#{lat}, #{lon}, #{rad}, '#{bank}')")
   end
 
-  def self.municipality(municipality)
-      where("municipality_id = ?", municipality)
+  def self.municipality(municipality, latitude, longitude, bank)
+      #where("municipality_id = ?", municipality)
+      lat = Float(latitude) rescue 0
+      lon = Float(longitude) rescue 0
+      mun = Integer(municipality) rescue 0
+
+      if bank.nil? || bank.match(/^([1-5][0-5]*,)*[1-5][0-5]*$/).nil?
+	  bank = 0
+      end
+
+      find_by_sql("SELECT * FROM municipality(#{mun}, #{lat}, #{lon}, '#{bank}')")
   end
 
   def self.zipcode(zipcode, radius, bank)

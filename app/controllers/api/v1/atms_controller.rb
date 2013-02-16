@@ -21,6 +21,12 @@ module Api
 		@status = @atms.blank? ? "NO_RESULTS" : "OK"
 		self.response.headers["Content-Type"] = "application/json; charset=UTF-8"
 	    end
+	    
+	    def municipality
+		@atms = Atm.municipality(params[:id], params[:latitude], params[:longitude], params[:bank])
+		@status = @atms.blank? ? "NO_RESULTS" : "OK"
+		self.response.headers["Content-Type"] = "application/json; charset=UTF-8"
+	    end
 
 	    def zipcode
 		@atms = Atm.zipcode(params[:zipcode], params[:radius], params[:bank])

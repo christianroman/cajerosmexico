@@ -2,17 +2,25 @@
 
 <table class="table table-bordered">
   <tr>
-    <th>Atm</th>
-    <th>Type</th>
-    <th>Reported at</th>
-    <th>Status</th>
-    <th></th>
-    <th></th>
+      <th>Atm</th>
+      <th>Branch</th>
+      <th>Municipality</th>
+      <th>State</th>
+      <th>Atm st</th>
+      <th>Type</th>
+      <th>Reported at</th>
+      <th>Status</th>
+      <th></th>
+      <th></th>
   </tr>
 
 <% @reports.each do |report| %>
   <tr>
-    <td><%= report.atm_id %></td>
+    <td><%= link_to report.atm.id,  admin_atm_path(report.atm) %></td>
+    <td><%= report.atm.branch %></td>
+    <td><%= report.atm.municipality.name %></td>
+    <td><%= report.atm.municipality.state.name %></td>
+    <td><%= report.atm.status %></td>
     <td><%= report.type_id %></td>
     <td><%= report.reported_at %></td>
     <td><%= report.status %></td>
